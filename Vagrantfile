@@ -1,4 +1,4 @@
-IMAGE_NAME = "bento/ubuntu-20.04"
+IMAGE_NAME = "rockylinux/8"
 N = 3
 
 Vagrant.configure("2") do |config|
@@ -14,7 +14,8 @@ Vagrant.configure("2") do |config|
         bastion.vm.network "private_network", ip: "10.10.1.3"
         bastion.vm.hostname = "bastion"
         bastion.vm.synced_folder "./ansible", "/ansible", type: "nfs"
-
+        bastion.vm.provision "shell",
+          inline: "yum install python39 -y"
         bastion.vm.provision "ansible" do |ansible|
             ansible.playbook = "bastion.yml"
             ansible.extra_vars = {
@@ -29,6 +30,8 @@ Vagrant.configure("2") do |config|
             node.vm.box = IMAGE_NAME
             node.vm.network "private_network", ip: "10.10.1.#{i + 10}"
             node.vm.hostname = "node-#{i}"
+            node.vm.provision "shell",
+              inline: "yum install python39 -y"
             node.vm.provision "ansible" do |ansible|
                 ansible.playbook = "node.yml"
                 ansible.extra_vars = {

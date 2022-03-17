@@ -13,7 +13,7 @@
         - '10.10.1.13 node-3 zabbix-proxy'
 
     - name: Install basic packages
-      apt:
+      package:
         name:
           - ca-certificates
           - curl
@@ -32,6 +32,6 @@
         state: present
         key: "{{ lookup('file', 'id_rsa.pub') }}"
 
-    - name: Set timezone to Europe/Amsterdam
+    - name: Set timezone to America/Detroit
       community.general.timezone:
-        name: Europe/Amsterdam
+        name: America/Detroit

@@ -13,12 +13,12 @@
         - '10.10.1.13 node-3 zabbix-proxy'
 
     - name: Install basic packages
-      apt:
+      package:
         name:
           - ca-certificates
           - curl
-          - python3
-          - python3-pip
+          - python39
+          - python39-pip
           - git
         state: present
         update_cache: True
@@ -55,6 +55,6 @@
         dest: id_rsa.pub
         flat: yes
 
-    - name: "Set timezone to Europe/Amsterdam"
+    - name: "Set timezone to America/Detroit"
       community.general.timezone:
-        name: Europe/Amsterdam
+        name: America/Detroit
