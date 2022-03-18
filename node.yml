@@ -17,8 +17,9 @@
         name:
           - ca-certificates
           - curl
-          - python3
-          - python3-pip
+          - python39
+          - python39-pip
+          - python39-PyMySQL
         state: present
         update_cache: True
 
