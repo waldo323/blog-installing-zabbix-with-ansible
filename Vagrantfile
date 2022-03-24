@@ -15,7 +15,7 @@ Vagrant.configure("2") do |config|
         bastion.vm.hostname = "bastion"
         bastion.vm.synced_folder "./ansible", "/ansible", type: "nfs"
         bastion.vm.provision "shell",
-          inline: "yum install python39 -y"
+          inline: "yum install python39 vim -y"
         bastion.vm.provision "ansible" do |ansible|
             ansible.playbook = "bastion.yml"
             ansible.extra_vars = {
