@@ -22,6 +22,6 @@ zabbix_link_templates_append:
   - 'Zabbix Server'
   
 # SELinux specific
-zabbix_selinux: true
-selinux_allow_zabbix_can_network: true
-selinux_allow_zabbix_can_http: true
+zabbix_selinux: false 
+#selinux_allow_zabbix_can_network: true
+#selinux_allow_zabbix_can_http: true
