@@ -31,7 +31,7 @@ Vagrant.configure("2") do |config|
             node.vm.network "private_network", ip: "10.10.1.#{i + 10}"
             node.vm.hostname = "node-#{i}"
             node.vm.provision "shell",
-              inline: "yum install python39 python3-policycoreutils python3-libsemanage python3-libselinux vim net-tools -y"
+              inline: "setenforce 0;sed -i 's/enforcing/permissive/g' /etc/selinux/config;yum install python39 python3-policycoreutils python3-libsemanage python3-libselinux vim net-tools -y"
             node.vm.provision "ansible" do |ansible|
                 ansible.playbook = "node.yml"
                 ansible.extra_vars = {
