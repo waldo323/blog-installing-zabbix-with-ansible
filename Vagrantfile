@@ -17,7 +17,7 @@ Vagrant.configure("2") do |config|
         bastion.vm.provision "shell",
           inline: "yum install python39 vim policycoreutils-python-utils python3-libsemanage net-tools -y"
         bastion.vm.provision "shell",
-          inline: "pipi3 install selinux"
+          inline: "pip3 install selinux"
         bastion.vm.provision "ansible" do |ansible|
             ansible.playbook = "bastion.yml"
             ansible.extra_vars = {
