@@ -20,3 +20,8 @@ zabbix_agent_server: "{{ hostvars['node-1']['ansible_host'] }}"
 zabbix_agent_serveractive: "{{ hostvars['node-1']['ansible_host'] }}"
 zabbix_link_templates_append:
   - 'Zabbix Server'
+  
+# SELinux specific
+zabbix_selinux: true
+selinux_allow_zabbix_can_network: true
+selinux_allow_zabbix_can_http: true
