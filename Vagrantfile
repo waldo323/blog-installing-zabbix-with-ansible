@@ -16,6 +16,8 @@ Vagrant.configure("2") do |config|
         bastion.vm.synced_folder "./ansible", "/ansible", type: "nfs"
         bastion.vm.provision "shell",
           inline: "yum install python39 vim policycoreutils-python-utils python3-libsemanage net-tools -y"
+        bastion.vm.provision "shell",
+          inline: "pip install selinux"
         bastion.vm.provision "ansible" do |ansible|
             ansible.playbook = "bastion.yml"
             ansible.extra_vars = {
@@ -32,6 +34,9 @@ Vagrant.configure("2") do |config|
             node.vm.hostname = "node-#{i}"
             node.vm.provision "shell",
               inline: "yum install python39 policycoreutils-python-utils python3-libsemanage vim net-tools -y"
+            node.vm.provision "shell",
+              inline: "pip install selinux"
+
             node.vm.provision "ansible" do |ansible|
                 ansible.playbook = "node.yml"
                 ansible.extra_vars = {
