@@ -1,4 +1,20 @@
 ---
+- name: prepare servers for installations
+  hosts: 
+    - zabbix_server
+    - zabbix_database
+  become: true
+5   pre_tasks:
+      - name: upgrade all packages
+        dnf:
+          name: "*"
+          state: latest      
+
+- name: prepare database server for mariadb installation
+  hosts: zabbix_database
+  become: true
+  dnf:
+    enablerepo: mariadb:10.5
 
 - hosts: zabbix_database
   become: true
